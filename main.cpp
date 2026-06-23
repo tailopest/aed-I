@@ -1,11 +1,11 @@
 #include <iostream>
 #include "ListaOrdenada.h"
-#include "TabelaHash.h"
-#include "ArvoreAVL.h"
+#include "HashTable.h"
+#include "AVLTree.h"
 
 using namespace std;
 
-void menuCatalogo(int tipoEstrutura, ListaOrdenada& lista, TabelaHash& hash, ArvoreAVL& avl) {
+void menuCatalogo(int tipoEstrutura, ListaOrdenada &L, HashTable &H, ALVTree &T) {
     int op;
     do {
         cout << "============================================\n"; 
@@ -23,29 +23,29 @@ void menuCatalogo(int tipoEstrutura, ListaOrdenada& lista, TabelaHash& hash, Arv
         switch (op) {
             case 1:
                 Filme f;
-                if (tipoEstrutura == 1) lista.inserir(f);
-                else if (tipoEstrutura == 2) hash.inserir(f);
-                else avl.inserir(f);
+                if (tipoEstrutura == 1) L.insert(f);
+                else if (tipoEstrutura == 2) H.insert(f);
+                else T.insert(f);
                 break;
             case 2:
-                if (tipoEstrutura == 1) lista.remover(cod);
-                else if (tipoEstrutura == 2) hash.remover(cod);
-                else avl.remover(cod);
+                if (tipoEstrutura == 1) L.remove(codigo);
+                else if (tipoEstrutura == 2) H.remove(codigo);
+                else T.remove(codigo);
                 break;
             case 3:
-                if (tipoEstrutura == 1) lista.consultar(cod);
-                else if (tipoEstrutura == 2) hash.consultar(cod);
-                else avl.consultar(cod);
+                if (tipoEstrutura == 1) L.search(codigo);
+                else if (tipoEstrutura == 2) H.search(codigo);
+                else T.search(codigo);
                 break;
             case 4:
-                if (tipoEstrutura == 1) lista.recomendar(gen);
-                else if (tipoEstrutura == 2) hash.recomendar(gen);
-                else avl.recomendar(gen);
+                if (tipoEstrutura == 1) L.recomendar(genero);
+                else if (tipoEstrutura == 2) H.recomendar(genero);
+                else T.recomendar(genero);
                 break;
             case 5:
-                if (tipoEstrutura == 1) lista.listar();
-                else if (tipoEstrutura == 2) hash.listar();
-                else avl.listar();
+                if (tipoEstrutura == 1) L.print();
+                else if (tipoEstrutura == 2) H.print();
+                else T.print();
                 break;
         }
     } while (op != 6);
@@ -53,7 +53,7 @@ void menuCatalogo(int tipoEstrutura, ListaOrdenada& lista, TabelaHash& hash, Arv
 
 int main() {
     ListaOrdenada lista;
-    TabelaHash hash;
+    HashTable H;
     ArvoreAVL avl;
 
     int estrutura;
@@ -66,9 +66,9 @@ int main() {
         cin >> estrutura;
 
         switch (estrutura) {
-            case 1: menuCatalogo(1, lista, hash, avl); break;
-            case 2: menuCatalogo(2, lista, hash, avl); break;
-            case 3: menuCatalogo(3, lista, hash, avl); break;
+            case 1: menuCatalogo(1, L, H, T); break;
+            case 2: menuCatalogo(2, L, H, T); break;
+            case 3: menuCatalogo(3, L, H, T); break;
         }
     } while (estrutura != 4);
 }
