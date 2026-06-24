@@ -1,2 +1,2 @@
 # aed-I
-Sistema de catálogo e recomendação de filmes
+Sistema de catálogo de filmes
