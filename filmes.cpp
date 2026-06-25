@@ -21,7 +21,7 @@ public:
     void insert(Filme x);
     void remove(int codigo);
     int search(int codigo);
-    int searchComContador(int codigo, int &comp);  // NOVO
+    int searchComContador(int codigo, int &comp); 
     bool consultar(int codigo, Filme &resultado);
     void ListarFilmes();
     void FilmesRecomendados(string genero);
@@ -29,7 +29,7 @@ public:
     int size();
 
 private:
-    static const int MaxList = 1000;
+    static const int MaxList = 15000;
     int count;
     Filme entry[MaxList + 1];
 };
