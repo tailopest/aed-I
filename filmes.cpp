@@ -21,6 +21,7 @@ public:
     void insert(Filme x);
     void remove(int codigo);
     int search(int codigo);
+    int searchComContador(int codigo, int &comp);  // NOVO
     bool consultar(int codigo, Filme &resultado);
     void ListarFilmes();
     void FilmesRecomendados(string genero);
@@ -86,6 +87,22 @@ int ListaFilmes::search(int codigo) {
     return (entry[d].codigo != codigo ? 0 : d);
 }
 
+
+int ListaFilmes::searchComContador(int codigo, int &comp) {
+    int t, e = 1, d = count;
+    comp = 0;
+    while (e < d) {
+        t = (e + d) / 2;
+        comp++;
+        if (entry[t].codigo < codigo)
+            e = t + 1;
+        else
+            d = t;
+    }
+    if (count > 0) comp++;
+    return (count == 0 || entry[d].codigo != codigo ? 0 : d);
+}
+
 bool ListaFilmes::consultar(int codigo, Filme &resultado) {
     int con = search(codigo);
     if (con == 0)
@@ -148,6 +165,43 @@ int ListaFilmes::size() {
     return count;
 }
 
+void TestarDesempenho() {
+    int tamanhos[] = {100, 500, 1000, 5000, 10000};
+    int qtdTestes = 5;
+
+    cout << "\n--- Teste de Desempenho ---" << endl;
+    cout << "n\t\tComparacoes" << endl;
+
+    for (int t = 0; t < qtdTestes; t++) {
+        ListaFilmes lista;
+        int n = tamanhos[t];
+
+        for (int i = 1; i <= n; i++) {
+            Filme f;
+            f.codigo = i;
+            f.titulo = "Barbie";
+            f.genero = "Comedia - Animacao";
+            f.ano = 2000;
+            f.nota = 8.5;
+            lista.insert(f);
+        }
+         for (int i = 1; i <= n; i++) {
+            Filme f;
+            f.codigo = i;
+            f.titulo = "O Auto Da Compadecida";
+            f.genero = "Comedia";
+            f.ano = 2000;
+            f.nota = 10;
+            lista.insert(f);
+        }
+
+        int comp = 0;
+        lista.searchComContador(n + 1, comp);
+
+        cout << n << "\t\t" << comp << endl;
+    }
+}
+
 int main() {
     ListaFilmes lista;
     int opcao = 0;
@@ -160,6 +214,7 @@ int main() {
         cout << "4 - Recomendar filmes por genero" << endl;
         cout << "5 - Listar filmes" << endl;
         cout << "6 - Sair" << endl;
+        cout << "7 - Testar desempenho" << endl;  
         cout << "Escolha uma das opcoes: ";
         cin >> opcao;
 
@@ -224,6 +279,9 @@ int main() {
         }
         else if (opcao == 6) {
             cout << "Saindo..." << endl;
+        }
+        else if (opcao == 7) {
+            TestarDesempenho();  
         }
         else {
             cout << "Opcao invalida." << endl;
