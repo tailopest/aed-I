@@ -185,9 +185,9 @@ void TestarDesempenho() {
             f.nota = 8.5;
             lista.insert(f);
         }
-         for (int i = 1; i <= n; i++) {
+         for (int k = 1; k <= n; k++) {
             Filme f;
-            f.codigo = i;
+            f.codigo = k;
             f.titulo = "O Auto Da Compadecida";
             f.genero = "Comedia";
             f.ano = 2000;
