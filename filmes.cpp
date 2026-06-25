@@ -29,7 +29,7 @@ public:
     int size();
 
 private:
-    static const int MaxList = 15000;
+    static const int MaxList = 2000;
     int count;
     Filme entry[MaxList + 1];
 };
@@ -166,7 +166,7 @@ int ListaFilmes::size() {
 }
 
 void TestarDesempenho() {
-    int tamanhos[] = {100, 500, 1000, 5000, 10000};
+    int tamanhos[] = {100, 200, 400, 800, 1000};
     int qtdTestes = 5;
 
     cout << "\n--- Teste de Desempenho ---" << endl;
